@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ namespace LearningWindowForm_24_06_2017
 {
     public partial class frmRegister : Form
     {
-        static String strCon = "server=192.168.0.159;database=K2;user id=k2dba;password=kaj5389@!!##$$;timeout=5;";
-        SqlConnection conn = new SqlConnection(strCon);
+     //   static String strCon = "server=192.168.0.159;database=K2;user id=k2dba;password=kaj5389@!!##$$;timeout=5;"; //Fix Config datasource
+        static String con = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        //gen datasource config from App.config 
+        SqlConnection conn = new SqlConnection(con);
         SqlCommand cmd;
         int ID = 0;
         public frmRegister()
@@ -25,7 +28,7 @@ namespace LearningWindowForm_24_06_2017
         private void frmRegister_Load(object sender, EventArgs e)
         {
             getListData();
-
+            
             
         }
 
